@@ -82,7 +82,6 @@ function timeColor() {
     }
 }
 timeColor();
-
   // parseInt(hour);
     // var hour = 12;
     // var { hour, currentHour } = timeBlockColor();
