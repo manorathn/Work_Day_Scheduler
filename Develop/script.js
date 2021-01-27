@@ -15,11 +15,13 @@
 // WHEN I refresh the page
 // THEN the saved events persist
 
-// Date
-var date = moment().format('MMMM Do YYYY, h:mm a');
-$('#currentDay').html(date);
+// moment.js day & time
+
 
 $(document).ready(function () {
+
+  var date = moment().format('MMMM Do YYYY');
+  $('#currentDay').html(date);
 
   // saveBtn click listener
   $('.saveBtn').on('click', function () {
@@ -35,14 +37,53 @@ $(document).ready(function () {
 
   // Gets items from local storage
   $("#8am .description").val(localStorage.getItem("8am"));
+  console.log($("#8am .description").val(localStorage.getItem("8am")))
+
   $("#9am .description").val(localStorage.getItem("9am"));
   $("#10am .description").val(localStorage.getItem("10am"));
   $("#11am .description").val(localStorage.getItem("11am"));
   $("#12pm .description").val(localStorage.getItem("12pm"));
-  $("#13pm .description").val(localStorage.getItem("13pm"));
-  $("#14pm .description").val(localStorage.getItem("14pm"));
-  $("#15pm .description").val(localStorage.getItem("15pm"));
-  $("#16pm .description").val(localStorage.getItem("16pm"));
-  $("#17pm .description").val(localStorage.getItem("17pm"));
+  $("#1pm .description").val(localStorage.getItem("1pm"));
+  $("#2pm .description").val(localStorage.getItem("2pm"));
+  $("#3pm .description").val(localStorage.getItem("3pm"));
+  $("#4pm .description").val(localStorage.getItem("4pm"));
+  $("#5pm .description").val(localStorage.getItem("5pm"));
 
+  // localStorage.clear();
 });
+
+
+// Change background of time-block to indicate present, future, past
+
+
+var now = moment().hours();
+// var now = 10;
+function timeColor() {
+
+  // $(".description").each(function () {
+  // var hour = parseInt($(this).parent().attr('id'));
+  for (var i = 8; i < 18; i++)
+
+    if (i > now) {
+      // $(".description").removeClass("present")
+      $('#' + i).children('textarea').addClass("future")
+      // $(".description").addClass("past")
+    } else if (i < now) {
+      // $(".description").removeClass("past")
+      // $(".description").removeClass("future")
+      // $(".description").addClass("past")
+      $('#' + i).children('textarea').addClass("past")
+    }
+    else if (i === now) {
+      // $(".description").removeClass("past")
+      // $(".description").addClass("present")
+      // $(".description").addClass("future")
+      $('#' + i).children('textarea').addClass("present")
+    }
+}
+timeColor();
+
+  // parseInt(hour);
+    // var hour = 12;
+    // var { hour, currentHour } = timeBlockColor();
+  // var now = 12;
