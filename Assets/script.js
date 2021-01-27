@@ -16,12 +16,10 @@
 // THEN the saved events persist
 
 // moment.js day & time
-
+var date = moment().format('MMMM Do YYYY');
+$('#currentDay').html(date);
 
 $(document).ready(function () {
-
-  var date = moment().format('MMMM Do YYYY');
-  $('#currentDay').html(date);
 
   // saveBtn click listener
   $('.saveBtn').on('click', function () {
@@ -52,37 +50,22 @@ $(document).ready(function () {
   // localStorage.clear();
 });
 
-
 // Change background of time-block to indicate present, future, past
-
-
 var now = moment().hours();
-// var now = 10;
+
 function timeColor() {
 
-  // $(".description").each(function () {
-  // var hour = parseInt($(this).parent().attr('id'));
   for (var i = 8; i < 18; i++)
 
     if (i > now) {
-      // $(".description").removeClass("present")
       $('#' + i).children('textarea').addClass("future")
-      // $(".description").addClass("past")
+
     } else if (i < now) {
-      // $(".description").removeClass("past")
-      // $(".description").removeClass("future")
-      // $(".description").addClass("past")
       $('#' + i).children('textarea').addClass("past")
     }
     else if (i === now) {
-      // $(".description").removeClass("past")
-      // $(".description").addClass("present")
-      // $(".description").addClass("future")
       $('#' + i).children('textarea').addClass("present")
     }
 }
 timeColor();
-  // parseInt(hour);
-    // var hour = 12;
-    // var { hour, currentHour } = timeBlockColor();
-  // var now = 12;
+
